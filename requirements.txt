@@ -1,0 +1,6 @@
+robotframework
+robotframework-seleniumlibrary
+robotframework-jsonlibrary
+selenium
+requests
+openpyxl

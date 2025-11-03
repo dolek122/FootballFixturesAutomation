@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.11.9 on win32)" generated="2025-11-03T23:58:07.985078" rpa="false" schemaversion="5">
+<suite id="s1" name="FootballFixtures" source="C:\Users\Arek\PycharmProjects\FootballAutomation\tests\FootballFixtures.robot">
+<test id="s1-t1" name="Football Fixtures Automation" line="9">
+<kw name="Open Browser Once" owner="Keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-11-03T23:58:08.477546" level="INFO">Opening browser 'Chrome' to base url 'https://www.flashscore.pl'.</msg>
+<arg>${FLASHSCORE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-11-03T23:58:08.477546" elapsed="3.528812"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.006358" elapsed="0.049006"/>
+</kw>
+<status status="PASS" start="2025-11-03T23:58:08.476544" elapsed="3.578820"/>
+</kw>
+<kw name="List Files In Directory" owner="OperatingSystem">
+<msg time="2025-11-03T23:58:12.056791" level="INFO" html="true">Listing contents of directory '&lt;a href="file://C:\Users\Arek\PycharmProjects\FootballAutomation\Input"&gt;C:\Users\Arek\PycharmProjects\FootballAutomation\Input&lt;/a&gt;'.</msg>
+<msg time="2025-11-03T23:58:12.056791" level="INFO">1 file:
+input.json</msg>
+<msg time="2025-11-03T23:58:12.056791" level="INFO">${input_files} = ['input.json']</msg>
+<var>${input_files}</var>
+<arg>${INPUT_FOLDER}</arg>
+<arg>*.json</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.055364" elapsed="0.001427"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Read Input JSON" owner="Keywords">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2025-11-03T23:58:12.058301" level="INFO">${data} = {'footballFixturesAutomationInput': [{'date': '2025-11-03', 'country': 'Polska', 'leagueName': 'Ekstraklasa', 'latitude': 52.23, 'longitude': 21.01}, {'date': '2025-11-04', 'country': 'Anglia', 'leagu...</msg>
+<var>${data}</var>
+<arg>${file_path}</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.058301" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${data['footballFixturesAutomationInput']}</value>
+<status status="PASS" start="2025-11-03T23:58:12.058301" elapsed="0.000000"/>
+</return>
+<msg time="2025-11-03T23:58:12.059307" level="INFO">${records} = [{'date': '2025-11-03', 'country': 'Polska', 'leagueName': 'Ekstraklasa', 'latitude': 52.23, 'longitude': 21.01}, {'date': '2025-11-04', 'country': 'Anglia', 'leagueName': 'Premier League', 'latitude'...</msg>
+<var>${records}</var>
+<arg>${INPUT_FOLDER}/${file}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.056791" elapsed="0.002516"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Create Output Folder" owner="Keywords">
+<kw name="Get Current Date" owner="DateTime">
+<msg time="2025-11-03T23:58:12.059307" level="INFO">${date} = 2025-11-03 23-58</msg>
+<var>${date}</var>
+<arg>result_format=%Y-%m-%d %H-%M</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.059307" elapsed="0.000000"/>
+</kw>
+<kw name="Join Path" owner="OperatingSystem">
+<msg time="2025-11-03T23:58:12.061153" level="INFO">${folder} = ..\FootballAutomation\Output\2025-11-03 23-58 Ekstraklasa</msg>
+<var>${folder}</var>
+<arg>${OUTPUT_FOLDER}</arg>
+<arg>${date} ${leagueName}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.059307" elapsed="0.001846"/>
+</kw>
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-11-03T23:58:12.061153" level="INFO" html="true">Created directory '&lt;a href="file://C:\Users\Arek\PycharmProjects\FootballAutomation\Output\2025-11-03 23-58 Ekstraklasa"&gt;C:\Users\Arek\PycharmProjects\FootballAutomation\Output\2025-11-03 23-58 Ekstraklasa&lt;/a&gt;'.</msg>
+<arg>${folder}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.061153" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${folder}</value>
+<status status="PASS" start="2025-11-03T23:58:12.062259" elapsed="0.000000"/>
+</return>
+<msg time="2025-11-03T23:58:12.062259" level="INFO">${folder} = ..\FootballAutomation\Output\2025-11-03 23-58 Ekstraklasa</msg>
+<var>${folder}</var>
+<arg>${record['leagueName']}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.059307" elapsed="0.002952"/>
+</kw>
+<kw name="Get League Table" owner="Keywords">
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2025-11-03T23:58:12.063514" level="INFO">${py_list_string} = [ 
+{'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26}, 
+{'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24}, 
+{'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22}, 
+{'Club': '4 Cracovia...</msg>
+<var>${py_list_string}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>[ \</arg>
+<arg>{'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26}, \</arg>
+<arg>{'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24}, \</arg>
+<arg>{'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22}, \</arg>
+<arg>{'Club': '4 Cracovia', 'Games': 12, 'Points': 21}, \</arg>
+<arg>{'Club': '5 Lech Poznań', 'Games': 12, 'Points': 20}, \</arg>
+<arg>{'Club': '6 Korona Kielce', 'Games': 13, 'Points': 19}, \</arg>
+<arg>{'Club': '7 Zagłębie Lubin', 'Games': 12, 'Points': 17}, \</arg>
+<arg>{'Club': '8 Raków Częstochowa', 'Games': 12, 'Points': 17}, \</arg>
+<arg>{'Club': '9 Pogoń Szczecin', 'Games': 13, 'Points': 17}, \</arg>
+<arg>{'Club': '10 Legia Warszawa', 'Games': 12, 'Points': 16}, \</arg>
+<arg>{'Club': '11 Radomiak Radom', 'Games': 13, 'Points': 16}, \</arg>
+<arg>{'Club': '12 Widzew Łódź', 'Games': 13, 'Points': 16}, \</arg>
+<arg>{'Club': '13 Arka Gdynia', 'Games': 13, 'Points': 15}, \</arg>
+<arg>{'Club': '14 Motor Lublin', 'Games': 12, 'Points': 14}, \</arg>
+<arg>{'Club': '15 GKS Katowice', 'Games': 13, 'Points': 14}, \</arg>
+<arg>{'Club': '16 Lechia Gdańsk', 'Games': 13, 'Points': 10}, \</arg>
+<arg>{'Club': '17 Bruk-Bet T.', 'Games': 13, 'Points': 10}, \</arg>
+<arg>{'Club': '18 Piast Gliwice', 'Games': 11, 'Points': 7} \</arg>
+<arg>]</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.062259" elapsed="0.001255"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-11-03T23:58:12.063514" level="INFO">@{table} = [ {'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26} | {'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24} | {'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22} | {'Club': '4 Cracovia'...</msg>
+<var>@{table}</var>
+<arg>${py_list_string}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.063514" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${table}</value>
+<status status="PASS" start="2025-11-03T23:58:12.064768" elapsed="0.000000"/>
+</return>
+<msg time="2025-11-03T23:58:12.064768" level="INFO">${table} = [{'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26}, {'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24}, {'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22}, {'Club': '4 Cracovia', 'G...</msg>
+<var>${table}</var>
+<arg>${record['leagueName']}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.062259" elapsed="0.002509"/>
+</kw>
+<kw name="Get Weather" owner="WeatherAPI">
+<msg time="2025-11-03T23:58:12.462331" level="INFO">${weather} = {'celsius': 9.9, 'fahrenheit': 49.82, 'full_response': {'latitude': 52.23009, 'longitude': 21.017075, 'generationtime_ms': 0.07700920104980469, 'utc_offset_seconds': 0, 'timezone': 'GMT', 'timezone_ab...</msg>
+<var>${weather}</var>
+<arg>${record['latitude']}</arg>
+<arg>${record['longitude']}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.064768" elapsed="0.397563"/>
+</kw>
+<kw name="Write Excel File" owner="ExcelWriter">
+<arg>${folder}</arg>
+<arg>${record}</arg>
+<arg>${table}</arg>
+<arg>${weather}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.462331" elapsed="0.027147"/>
+</kw>
+<kw name="Write Weather Json" owner="ExcelWriter">
+<arg>${folder}</arg>
+<arg>${weather}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.489478" elapsed="0.001507"/>
+</kw>
+<var name="${record}">{'date': '2025-11-03', 'country': 'Polska', 'leagueName': 'Ekstraklasa', 'latitude': 52.23, 'longitude': 21.01}</var>
+<status status="PASS" start="2025-11-03T23:58:12.059307" elapsed="0.431678"/>
+</iter>
+<iter>
+<kw name="Create Output Folder" owner="Keywords">
+<kw name="Get Current Date" owner="DateTime">
+<msg time="2025-11-03T23:58:12.490985" level="INFO">${date} = 2025-11-03 23-58</msg>
+<var>${date}</var>
+<arg>result_format=%Y-%m-%d %H-%M</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.490985" elapsed="0.000000"/>
+</kw>
+<kw name="Join Path" owner="OperatingSystem">
+<msg time="2025-11-03T23:58:12.492114" level="INFO">${folder} = ..\FootballAutomation\Output\2025-11-03 23-58 Premier League</msg>
+<var>${folder}</var>
+<arg>${OUTPUT_FOLDER}</arg>
+<arg>${date} ${leagueName}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.492114" elapsed="0.000000"/>
+</kw>
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-11-03T23:58:12.493110" level="INFO" html="true">Created directory '&lt;a href="file://C:\Users\Arek\PycharmProjects\FootballAutomation\Output\2025-11-03 23-58 Premier League"&gt;C:\Users\Arek\PycharmProjects\FootballAutomation\Output\2025-11-03 23-58 Premier League&lt;/a&gt;'.</msg>
+<arg>${folder}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.492114" elapsed="0.000996"/>
+</kw>
+<return>
+<value>${folder}</value>
+<status status="PASS" start="2025-11-03T23:58:12.493110" elapsed="0.000000"/>
+</return>
+<msg time="2025-11-03T23:58:12.493110" level="INFO">${folder} = ..\FootballAutomation\Output\2025-11-03 23-58 Premier League</msg>
+<var>${folder}</var>
+<arg>${record['leagueName']}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.490985" elapsed="0.002125"/>
+</kw>
+<kw name="Get League Table" owner="Keywords">
+<kw name="Catenate" owner="BuiltIn">
+<msg time="2025-11-03T23:58:12.494167" level="INFO">${py_list_string} = [ 
+{'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26}, 
+{'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24}, 
+{'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22}, 
+{'Club': '4 Cracovia...</msg>
+<var>${py_list_string}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>[ \</arg>
+<arg>{'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26}, \</arg>
+<arg>{'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24}, \</arg>
+<arg>{'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22}, \</arg>
+<arg>{'Club': '4 Cracovia', 'Games': 12, 'Points': 21}, \</arg>
+<arg>{'Club': '5 Lech Poznań', 'Games': 12, 'Points': 20}, \</arg>
+<arg>{'Club': '6 Korona Kielce', 'Games': 13, 'Points': 19}, \</arg>
+<arg>{'Club': '7 Zagłębie Lubin', 'Games': 12, 'Points': 17}, \</arg>
+<arg>{'Club': '8 Raków Częstochowa', 'Games': 12, 'Points': 17}, \</arg>
+<arg>{'Club': '9 Pogoń Szczecin', 'Games': 13, 'Points': 17}, \</arg>
+<arg>{'Club': '10 Legia Warszawa', 'Games': 12, 'Points': 16}, \</arg>
+<arg>{'Club': '11 Radomiak Radom', 'Games': 13, 'Points': 16}, \</arg>
+<arg>{'Club': '12 Widzew Łódź', 'Games': 13, 'Points': 16}, \</arg>
+<arg>{'Club': '13 Arka Gdynia', 'Games': 13, 'Points': 15}, \</arg>
+<arg>{'Club': '14 Motor Lublin', 'Games': 12, 'Points': 14}, \</arg>
+<arg>{'Club': '15 GKS Katowice', 'Games': 13, 'Points': 14}, \</arg>
+<arg>{'Club': '16 Lechia Gdańsk', 'Games': 13, 'Points': 10}, \</arg>
+<arg>{'Club': '17 Bruk-Bet T.', 'Games': 13, 'Points': 10}, \</arg>
+<arg>{'Club': '18 Piast Gliwice', 'Games': 11, 'Points': 7} \</arg>
+<arg>]</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.494167" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-11-03T23:58:12.495169" level="INFO">@{table} = [ {'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26} | {'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24} | {'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22} | {'Club': '4 Cracovia'...</msg>
+<var>@{table}</var>
+<arg>${py_list_string}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.494167" elapsed="0.001002"/>
+</kw>
+<return>
+<value>${table}</value>
+<status status="PASS" start="2025-11-03T23:58:12.495169" elapsed="0.000000"/>
+</return>
+<msg time="2025-11-03T23:58:12.495169" level="INFO">${table} = [{'Club': '1 Górnik Zabrze', 'Games': 13, 'Points': 26}, {'Club': '2 Jagiellonia Białystok', 'Games': 12, 'Points': 24}, {'Club': '3 Wisła Płock', 'Games': 12, 'Points': 22}, {'Club': '4 Cracovia', 'G...</msg>
+<var>${table}</var>
+<arg>${record['leagueName']}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.493110" elapsed="0.002059"/>
+</kw>
+<kw name="Get Weather" owner="WeatherAPI">
+<msg time="2025-11-03T23:58:12.863113" level="INFO">${weather} = {'celsius': 15.0, 'fahrenheit': 59.0, 'full_response': {'latitude': 51.5, 'longitude': -0.120000124, 'generationtime_ms': 0.0782012939453125, 'utc_offset_seconds': 0, 'timezone': 'GMT', 'timezone_abbr...</msg>
+<var>${weather}</var>
+<arg>${record['latitude']}</arg>
+<arg>${record['longitude']}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.495169" elapsed="0.367944"/>
+</kw>
+<kw name="Write Excel File" owner="ExcelWriter">
+<arg>${folder}</arg>
+<arg>${record}</arg>
+<arg>${table}</arg>
+<arg>${weather}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.863113" elapsed="0.019646"/>
+</kw>
+<kw name="Write Weather Json" owner="ExcelWriter">
+<arg>${folder}</arg>
+<arg>${weather}</arg>
+<status status="PASS" start="2025-11-03T23:58:12.882759" elapsed="0.001008"/>
+</kw>
+<var name="${record}">{'date': '2025-11-04', 'country': 'Anglia', 'leagueName': 'Premier League', 'latitude': 51.5, 'longitude': -0.12}</var>
+<status status="PASS" start="2025-11-03T23:58:12.490985" elapsed="0.392782"/>
+</iter>
+<var>${record}</var>
+<value>@{records}</value>
+<status status="PASS" start="2025-11-03T23:58:12.059307" elapsed="0.824460"/>
+</for>
+<var name="${file}">input.json</var>
+<status status="PASS" start="2025-11-03T23:58:12.056791" elapsed="0.826976"/>
+</iter>
+<var>${file}</var>
+<value>@{input_files}</value>
+<status status="PASS" start="2025-11-03T23:58:12.056791" elapsed="0.826976"/>
+</for>
+<kw name="Close Browser" owner="Keywords">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-11-03T23:58:12.884766" elapsed="2.126240"/>
+</kw>
+<status status="PASS" start="2025-11-03T23:58:12.884766" elapsed="2.126240"/>
+</kw>
+<status status="PASS" start="2025-11-03T23:58:08.476544" elapsed="6.534462"/>
+</test>
+<status status="PASS" start="2025-11-03T23:58:07.987078" elapsed="7.025183"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="FootballFixtures" id="s1" pass="1" fail="0" skip="0">FootballFixtures</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

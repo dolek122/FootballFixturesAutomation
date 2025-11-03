@@ -1,0 +1,18 @@
+{
+  "footballFixturesAutomationInput": [
+    {
+      "date": "2025-11-03",
+      "country": "Polska",
+      "leagueName": "Ekstraklasa",
+      "latitude": 52.23,
+      "longitude": 21.01
+    },
+    {
+      "date": "2025-11-04",
+      "country": "Anglia",
+      "leagueName": "Premier League",
+      "latitude": 51.50,
+      "longitude": -0.12
+    }
+  ]
+}
