@@ -1,9 +1,10 @@
 Prosta instrukcja dotycząca uruchomienia automatyzacji
 --
 1. Przejdź do Variables.robot - ${FLASHSCORE_URL} -> upewnij się, że jest ustawione na flashscore.pl (dla polskich selektorów)
-2. ${BROWSER} - Ustaw na przeglądarkę z której korzystasz np. Chrome czy Firefox
-3. ${INPUT_FOLDER}/${OUTPUT_FOLDER} - Sprawdź czy ścieżki są poprawnie ustawione
-4. Następnie upewnij się, że plik input.json ma następującą strukturę
+2. Należy zainstalować wszystkie biblioteki z pliku requirements.txt - pip install -r requirements.txt
+3. ${BROWSER} - Ustaw na przeglądarkę z której korzystasz np. Chrome czy Firefox
+4. ${INPUT_FOLDER}/${OUTPUT_FOLDER} - Sprawdź czy ścieżki są poprawnie ustawione
+5. Następnie upewnij się, że plik input.json ma następującą strukturę
 
 ```json
 {
