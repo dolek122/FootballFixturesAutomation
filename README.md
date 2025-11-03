@@ -5,6 +5,7 @@ Prosta instrukcja dotycząca uruchomienia automatyzacji
 3. ${INPUT_FOLDER}/${OUTPUT_FOLDER} - Sprawdź czy ścieżki są poprawnie ustawione
 4. Następnie upewnij się, że plik input.json ma następującą strukturę
 
+```json
 {
   "footballFixturesAutomationInput": [
     {
@@ -23,5 +24,6 @@ Prosta instrukcja dotycząca uruchomienia automatyzacji
     }
   ]
 }
+```
 
 5. do uruchomienia automatyzacji należy wpisać komendę - robot tests/FootballFixtures.robot
