@@ -1,0 +1,27 @@
+Prosta instrukcja dotycząca uruchomienia automatyzacji
+--
+1. Przejdź do Variables.robot - ${FLASHSCORE_URL} -> upewnij się, że jest ustawione na flashscore.pl (dla polskich selektorów)
+2. ${BROWSER} - Ustaw na przeglądarkę z której korzystasz np. Chrome czy Firefox
+3. ${INPUT_FOLDER}/${OUTPUT_FOLDER} - Sprawdź czy ścieżki są poprawnie ustawione
+4. Następnie upewnij się, że plik input.json ma następującą strukturę
+
+{
+  "footballFixturesAutomationInput": [
+    {
+      "date": "2025-11-03",
+      "country": "Polska",
+      "leagueName": "Ekstraklasa",
+      "latitude": 52.23,
+      "longitude": 21.01
+    },
+    {
+      "date": "2025-11-04",
+      "country": "Anglia",
+      "leagueName": "Premier League",
+      "latitude": 51.50,
+      "longitude": -0.12
+    }
+  ]
+}
+
+5. do uruchomienia automatyzacji należy wpisać komendę - robot tests/FootballFixtures.robot
