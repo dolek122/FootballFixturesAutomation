@@ -8,7 +8,6 @@ def get_weather(latitude, longitude):
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
-
         data = response.json()
         temp_c = data['current_weather']['temperature']
 

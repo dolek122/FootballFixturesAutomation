@@ -5,7 +5,6 @@ Library           JSONLibrary
 Library           Collections
 Library           DateTime
 Library           String
-# Zakładam, że te biblioteki masz, ale logika poniżej stara się korzystać głównie ze standardowych
 Library           ../src/weather_api.py
 Library           ../src/excel_writer.py
 
